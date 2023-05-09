@@ -20,7 +20,7 @@ export const selectionSort = (arr) => {
             tempArr[j] = {...tempArr[j], color: "blue"};
             mainVisualizer.push({
                 visualise: tempArr,
-                description: `Comparing the value ${tempArr[j].value} at index ${j} with the current minimum value ${tempArr[minIndex].value} at index ${minIndex}.`
+                description: `Comparing the value ${tempArr[j].value} with the current minimum value ${tempArr[minIndex].value} at index ${minIndex}.`
             });
 
             if(tempArr[j].value < tempArr[minIndex].value) {
@@ -33,7 +33,7 @@ export const selectionSort = (arr) => {
                 tempArr[j] = {...tempArr[j], color:"brown"};
                 mainVisualizer.push({
                     visualise:tempArr,
-                    description: `Value Less than current MinimumVlaue found. Thus Changing the minimum value to ${tempArr[minIndex].value}`
+                    description: `${tempArr[minIndex].value} is less than current minimum value. Thus Changing the minimum value to ${tempArr[minIndex].value}`
                 });
             }
             if(j!==minIndex) {
@@ -50,7 +50,7 @@ export const selectionSort = (arr) => {
         tempArr[i] = {...tempArr[i], color:"orange"};
         mainVisualizer.push({
             visualise: tempArr,
-            description: `Swapping ${tempArr[i].value} with ${tempArr[minIndex].value}`
+            description: `Swapping ${tempArr[minIndex].value} with minimum value found ${tempArr[i].value}`
         });
         tempArr = [...tempArr];
         tempArr[i] = {...tempArr[i], color: "green"};

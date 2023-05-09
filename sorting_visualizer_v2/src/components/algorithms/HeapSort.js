@@ -24,7 +24,7 @@ export const heapSort = (arr) => {
 		// Visualize the swap
 				mainVisualizer.push({
 						visualise: [...arr],
-						description: `We have now sorted the element with value ${arr[i].value} by swapping it with the maximum element ${arr[0].value}. It is now at its correct sorted position.`,
+						description: `We have now sorted the element ${arr[i].value} by swapping it with the last element ${arr[0].value}.`,
 				});
 
 		// Heapify the reduced heap

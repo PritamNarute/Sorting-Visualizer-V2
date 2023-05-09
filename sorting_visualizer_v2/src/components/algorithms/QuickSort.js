@@ -60,7 +60,7 @@ const partition = (arr, low, high) => {
 
     mainVisualizer.push({
         visualise: tempArr,
-        description: `Swapping the pivot element ${tempArr[high].value} with the element ${tempArr[i + 1].value} just after the last element that is less than pivot.`
+        description: `Finally swapping the pivot element ${tempArr[high].value} with the element ${tempArr[i + 1].value}`
     });
     return i + 1;
 };

@@ -8,9 +8,9 @@ import "./Modal.css";
 const ModaOverlay = (props) => {
     const content = (
             <div className="modal">
-                <header className="modal-header">
+                {props.header && <header className="modal-header">
                     <h2> {props.header} </h2>
-                </header>
+                </header>}
                 <form 
                     onSubmit={ props.onSubmit ? props.onSubmit : event => event.preventDefault()}
                 >

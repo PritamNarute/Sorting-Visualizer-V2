@@ -5,6 +5,9 @@ import ArrayDisplay from "./components/MainComponents/ArrayDisplay";
 import { useArray } from "./components/hooks/array-hook";
 import Actions from "./components/MainComponents/Actions";
 import Description from "./components/MainComponents/Description";
+import BackDrop from "./components/UIElements/BackDrop";
+import Welcome from "./components/UIElements/Welcome";
+import Modal from "./components/UIElements/Modal";
 
 const App = () => {
 	const [
@@ -16,6 +19,7 @@ const App = () => {
 		onNewArray,
 		onSortStart,
 	] = useArray(null, -1, newRandomArray(10, 100, 10));
+	const [showWelcome, setShowWelcome] = useState(true);
 	const [selectedAlgorithm, setSelectdAlgorithm] = useState(null);
 	const [play, setPlay] = useState(false);
 	const intervalRef = useRef();
@@ -52,6 +56,13 @@ const App = () => {
 	}
 
 	useEffect(() => {
+		const timeout = setTimeout(() => {
+		  setShowWelcome(false);
+		}, 2000);
+		return () => clearTimeout(timeout);
+	}, []);
+
+	useEffect(() => {
 		const handleKeyDown = (event) => {
 			if (event.keyCode === 37) {
 				// left arrow key
@@ -85,7 +96,9 @@ const App = () => {
 	]);
 
 	return (
+		
 		<div>
+			<Modal class="modal_top" show= {showWelcome}> <Welcome></Welcome> </Modal>
 			<Header
 				onSelect={onSelect}
 				selected={selectedAlgorithm}

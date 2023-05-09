@@ -38,7 +38,7 @@ export const countingSort = (arr) => {
 
             mainVisualizer.push({
                 visualise: [...arr],
-                description: `Adding the occurrences of ${i} to the count array.`
+                description: `Adding the occurrences of ${i} to the array.`
             });
         }
     }

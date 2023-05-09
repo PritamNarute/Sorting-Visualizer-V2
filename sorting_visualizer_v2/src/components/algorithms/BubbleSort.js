@@ -30,13 +30,13 @@ export const BubbleSort = (arr) => {
 				[ arr[j], arr[j+1] ] = [ arr[j+1], arr[j] ];
 				mainVisualizer.push({
 					visualise: tempArr,
-					description: `As we were comparing ${tempArr[j].value} and ${tempArr[j+1].value}, we found that ${tempArr[j].value} was greater than ${tempArr[j+1].value}. Thus, we had to swap them.`
+					description: `As we were comparing ${tempArr[j+1].value} and ${tempArr[j].value}, we found that ${tempArr[j+1].value} was greater than ${tempArr[j].value}. Thus, we had to swap them.`
 				})
 			}
 			else {
 				mainVisualizer.push({
 					visualise: tempArr,
-					description: `Here, ${tempArr[j].value} was not greater than ${tempArr[j+1].value}, hence there was no need for swapping.`
+					description: `Here, ${tempArr[j+1].value} was not greater than ${tempArr[j].value}, hence there was no need for swapping.`
 				})
 			}
 			tempArr = [...tempArr];

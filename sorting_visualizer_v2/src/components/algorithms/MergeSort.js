@@ -4,9 +4,13 @@ const merge = (arr, l, m, r) =>
 {
     let temp = [];
     tempArr = [...arr];
-    for(let i=l; i<=r; i++) {
-        tempArr[i] = {...tempArr[i], color:"purple"};
+    for(let i=l; i<=m; i++) {
+        tempArr[i] = {...tempArr[i], color: "brown"};
     }
+    for(let i=m+1; i<=r; i++) {
+        tempArr[i] = {...tempArr[i], color: "orange"}
+    }
+
     mainVisualizer.push({
         visualise: tempArr,
         description: `We are processing the array from index ${l} to index ${r} in the merge function.`
@@ -21,7 +25,7 @@ const merge = (arr, l, m, r) =>
         tempArr[j] = {...tempArr[j], color: "blue"};
         mainVisualizer.push({
         visualise: tempArr,
-        description: `Comparing the element at index ${i} with value ${tempArr[i].value} with the element at index ${j} with value ${tempArr[j].value}.`
+        description: `Comparing the element ${tempArr[i].value} with element ${tempArr[j].value}.`
         });
         let low = i;
         let high = j;
@@ -41,7 +45,7 @@ const merge = (arr, l, m, r) =>
             temp[k++] = arr[j++];
         }
         tempArr = [...tempArr];
-        tempArr[low] = {...tempArr[low], color: "purple"};
+        tempArr[low] = {...tempArr[low], color:`purple`};
         tempArr[high] = {...tempArr[high], color: "purple"};
     }
 
@@ -93,12 +97,12 @@ const mergeSortHelper = (arr,l, r) => {
     }
     mainVisualizer.push({
         visualise: tempArr,
-        description: `In the mergeSort function, we are currently working on processing the array from index ${l} to index ${r} and determining the middle of this range in order to divide the array into two halves.`
+        description: `In the mergeSort function, we are currently working on processing the array from index ${l} to index ${r}.`
     });
     let m = l+ parseInt((r-l)/2);
     tempArr = [...tempArr];
-    tempArr[m] = {...tempArr[m], color:'orange'};
-    arr[m] = {...arr[m], color:"orange"};
+    tempArr[m] = {...tempArr[m], color:'red'};
+    arr[m] = {...arr[m], color:"red"};
     mainVisualizer.push({
         visualise: tempArr,
         description: `The middle element is calculated at index ${m} with a value of ${tempArr[m].value}.`

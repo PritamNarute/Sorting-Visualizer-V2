@@ -5,7 +5,6 @@ import ArrayDisplay from "./components/MainComponents/ArrayDisplay";
 import { useArray } from "./components/hooks/array-hook";
 import Actions from "./components/MainComponents/Actions";
 import Description from "./components/MainComponents/Description";
-import BackDrop from "./components/UIElements/BackDrop";
 import Welcome from "./components/UIElements/Welcome";
 import Modal from "./components/UIElements/Modal";
 

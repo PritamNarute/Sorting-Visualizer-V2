@@ -35,6 +35,7 @@ export const getAlgorithms = (arr, name) => {
         case "radix" :
             array = radixSort(arr);
             return array;
+            
         default :
             return null;
     }

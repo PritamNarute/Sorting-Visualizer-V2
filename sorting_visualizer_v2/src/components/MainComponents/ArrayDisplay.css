@@ -1,0 +1,44 @@
+
+
+.elements {
+    z-index: 0;
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center; 
+}
+
+.element {
+    transition: all 300ms;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+.element-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.element-value {
+    width: 100%;
+    color: white;
+    padding: 0.1rem 0.3rem;
+    text-align: center;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+.element-value-radius {
+    border-radius: 4px 4px 0 0;
+}
+
+.index-value-radius {
+    border-radius: 0 0 4px 4px;
+}

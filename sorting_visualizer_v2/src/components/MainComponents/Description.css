@@ -1,0 +1,24 @@
+.description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    position: fixed;
+    top: 110px;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    width: 90%;
+    border-radius: 999px;
+    background-color: rgb(204, 202, 202);
+    padding: 1rem 2rem;
+    border: 1px solid gray;
+    transition: all 0.3s;
+}
+
+@media (max-width:800px) {
+    .description {
+        top: 150px;
+    }
+}

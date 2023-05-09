@@ -1,5 +1,6 @@
 export const BubbleSort = (arr) => {
     const n = arr.length;
+	
     const mainVisualizer = [];
 	let tempArr = [];
 

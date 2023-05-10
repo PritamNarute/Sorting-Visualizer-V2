@@ -21,6 +21,7 @@ const App = () => {
 	const [showWelcome, setShowWelcome] = useState(true);
 	const [selectedAlgorithm, setSelectdAlgorithm] = useState(null);
 	const [play, setPlay] = useState(false);
+	const [time, setTime] = useState(1);
 	const intervalRef = useRef();
 
 	const onSelect = (option) => {
@@ -39,21 +40,22 @@ const App = () => {
 			onEnd();
 		}
 	};
-	const onPlayClick = () => {
-		if (!arrayState.algoVisualisation || play) {
-			clearInterval(intervalRef.current);
-		} else {
-			intervalRef.current = setInterval(() => {
-				onForward();
-			}, 1000);
-		}
-		setPlay(!play);
-	};
 
 	if (play && arrayState.counter >= arrayState.algoVisualisation.length - 1) {
-		onPlayClick();
+		clearInterval(intervalRef.current);
+		setPlay(false);
 	}
 
+	useEffect(() => {
+		if(arrayState.algoVisualisation && arrayState.counter < arrayState.algoVisualisation.length - 1 && play) {
+			intervalRef.current = setInterval(() => {
+				onForward();
+			}, (1000/time));
+		}
+		return () => {
+			clearInterval(intervalRef.current);
+		}
+	});
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 		  setShowWelcome(false);
@@ -103,7 +105,7 @@ const App = () => {
 				selected={selectedAlgorithm}
 				onNewArray={(array) => onNewArray(array)}
 				onSort={onSortButtonClick}
-				onPlay={onPlayClick}
+				onPlay={() => setPlay(!play)}
 				play={play}
 				isAlgo={arrayState.algoVisualisation ? true : false}
 				reset={arrayState.algoVisualisation && arrayState.counter === arrayState.algoVisualisation.length - 1 ? true : false}
@@ -127,9 +129,14 @@ const App = () => {
 					arrayState={arrayState}
 					onForward={onForward}
 					onBackward={onBackward}
-					onPlay={onPlayClick}
+					onPlay={() => setPlay(!play)}
+					onSliderChange = {(e) => {setTime(e.target.value)}}
+					time = {time}
 				></Actions>
 			)}
+
+			
+
 		</div>
 	);
 };

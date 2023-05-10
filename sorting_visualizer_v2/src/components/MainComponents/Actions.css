@@ -11,3 +11,21 @@
     background-color: #E5F9DB;
     padding: 1rem;
 }
+
+.slider-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1.3rem
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.slider {
+    cursor: pointer;
+}

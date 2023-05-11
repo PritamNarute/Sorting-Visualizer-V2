@@ -13,7 +13,8 @@ const merge = (arr, l, m, r) =>
 
     mainVisualizer.push({
         visualise: tempArr,
-        description: `We are processing the array from index ${l} to index ${r} in the merge function.`
+        description: `We are processing the array from index ${l} to index ${r} in the merge function.`,
+        line: "10"
     });
 
     let i=l;
@@ -25,14 +26,16 @@ const merge = (arr, l, m, r) =>
         tempArr[j] = {...tempArr[j], color: "blue"};
         mainVisualizer.push({
         visualise: tempArr,
-        description: `Comparing the element ${tempArr[i].value} with element ${tempArr[j].value}.`
+        description: `Comparing the element ${tempArr[i].value} with element ${tempArr[j].value}.`,
+        line: "15"
         });
         let low = i;
         let high = j;
         if(arr[i].value <= arr[j].value) {
             mainVisualizer.push({
                 visualise: tempArr,
-                description: `Since ${tempArr[i].value} is less than or equal to ${tempArr[j].value}, we will push ${tempArr[i].value} to the extra array.`
+                description: `Since ${tempArr[i].value} is less than or equal to ${tempArr[j].value}, we will push ${tempArr[i].value} to the extra array.`,
+                line: "16"
             });
             temp[k++] = arr[i++];
         }
@@ -40,7 +43,8 @@ const merge = (arr, l, m, r) =>
         else {
             mainVisualizer.push({
                 visualise: tempArr,
-                description: `Here, ${tempArr[i].value} is greater than ${tempArr[j].value}. Therefore, ${tempArr[j].value} is pushed to the extra array.`
+                description: `Here, ${tempArr[i].value} is greater than ${tempArr[j].value}. Therefore, ${tempArr[j].value} is pushed to the extra array.`,
+                line: "18"
             });
             temp[k++] = arr[j++];
         }
@@ -54,7 +58,8 @@ const merge = (arr, l, m, r) =>
         tempArr[i] = {...tempArr[i], color: "blue"};
         mainVisualizer.push ({
             visualise: tempArr,
-            description: `The remaining element ${tempArr[i].value} of the left half is now being pushed to the extra array.`
+            description: `The remaining element ${tempArr[i].value} of the left half is now being pushed to the extra array.`,
+            line: "23"
         });
         tempArr = [...tempArr];
         tempArr[i] = {...tempArr[i], color:"purple" };
@@ -66,7 +71,8 @@ const merge = (arr, l, m, r) =>
         tempArr[j] = {...tempArr[j], color: "blue"};
         mainVisualizer.push ({
             visualise: tempArr,
-            description: `Appending the remaining element ${tempArr[j].value} of right half to the extra array.`
+            description: `Appending the remaining element ${tempArr[j].value} of right half to the extra array.`,
+            line: "29"
         });
         tempArr = [...tempArr];
         tempArr[j] = {...tempArr[j], color:"purple" };
@@ -80,7 +86,8 @@ const merge = (arr, l, m, r) =>
         arr[i] = {...arr[i], color:"green"}
         mainVisualizer.push({
             visualise: tempArr,
-            description: `Now pushing ${temp[k].value} from the extra array to the main array.`
+            description: `Now pushing ${temp[k].value} from the extra array to the main array.`,
+            line: "33"
         })
         k++;
     }
@@ -97,7 +104,8 @@ const mergeSortHelper = (arr,l, r) => {
     }
     mainVisualizer.push({
         visualise: tempArr,
-        description: `In the mergeSort function, we are currently working on processing the array from index ${l} to index ${r}.`
+        description: `In the mergeSort function, processing the array from index ${l} to index ${r}.`,
+        line: "1"
     });
     let m = l+ parseInt((r-l)/2);
     tempArr = [...tempArr];
@@ -105,7 +113,8 @@ const mergeSortHelper = (arr,l, r) => {
     arr[m] = {...arr[m], color:"red"};
     mainVisualizer.push({
         visualise: tempArr,
-        description: `The middle element is calculated at index ${m} with a value of ${tempArr[m].value}.`
+        description: `The middle element is calculated at index ${m} with a value of ${tempArr[m].value}.`,
+        line: "5"
     });
     mergeSortHelper(arr,l,m);
     mergeSortHelper(arr,m+1,r);
@@ -118,7 +127,8 @@ export const mergeSort = (arr, low, high) => {
         arr[0] = {...arr[0], color: "green"};
         mainVisualizer.push({
             visualise: arr,
-            description: "The array has been sorted."
+            description: "The array has been sorted.",
+            line: "9"
         });
         return mainVisualizer;
     }
@@ -126,7 +136,8 @@ export const mergeSort = (arr, low, high) => {
     mergeSortHelper(arr, low, high);
     mainVisualizer.push({
         visualise: tempArr,
-        description: "The array has been sorted."
+        description: "The array has been sorted.",
+        line: "9"
     })
     return mainVisualizer;
 }

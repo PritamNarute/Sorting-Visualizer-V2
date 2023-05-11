@@ -13,14 +13,17 @@ export const selectionSort = (arr) => {
         tempArr[minIndex] = {...tempArr[minIndex], color:"orange"};
         mainVisualizer.push({
             visualise:tempArr,
-            description: `Locating the smallest element at index ${minIndex} in the current range of values.`
+            description: `Locating the smallest element at index ${minIndex} in the current range of values.`,
+            line: "4"
+            
         });
         for (let j = i + 1; j < n; j++) {
             tempArr = [...tempArr];
             tempArr[j] = {...tempArr[j], color: "blue"};
             mainVisualizer.push({
                 visualise: tempArr,
-                description: `Comparing the value ${tempArr[j].value} with the current minimum value ${tempArr[minIndex].value} at index ${minIndex}.`
+                description: `Comparing the value ${tempArr[j].value} with the current minimum value ${tempArr[minIndex].value} at index ${minIndex}.`,
+                line : "6"
             });
 
             if(tempArr[j].value < tempArr[minIndex].value) {
@@ -33,7 +36,8 @@ export const selectionSort = (arr) => {
                 tempArr[j] = {...tempArr[j], color:"brown"};
                 mainVisualizer.push({
                     visualise:tempArr,
-                    description: `${tempArr[minIndex].value} is less than current minimum value. Thus Changing the minimum value to ${tempArr[minIndex].value}`
+                    description: `${tempArr[minIndex].value} is less than current minimum value. Thus Changing the minimum value to ${tempArr[minIndex].value}`,
+                    line: "7"
                 });
             }
             if(j!==minIndex) {
@@ -50,7 +54,8 @@ export const selectionSort = (arr) => {
         tempArr[i] = {...tempArr[i], color:"orange"};
         mainVisualizer.push({
             visualise: tempArr,
-            description: `Swapping ${tempArr[minIndex].value} with minimum value found ${tempArr[i].value}`
+            description: `Swapping ${tempArr[minIndex].value} with minimum value found ${tempArr[i].value}`,
+            line: "10"
         });
         tempArr = [...tempArr];
         tempArr[i] = {...tempArr[i], color: "green"};
@@ -59,7 +64,8 @@ export const selectionSort = (arr) => {
         }
         mainVisualizer.push({
             visualise: tempArr,
-            description: `Element ${tempArr[i].value} is now at its sorted position`
+            description: `Element ${tempArr[i].value} is now at its sorted position`,
+            line: "-1"
         });
     }
 
@@ -67,6 +73,7 @@ export const selectionSort = (arr) => {
     mainVisualizer.push({
         visualise: tempArr,
         description: "Array is now sorted",
+        line: "12"
     });
 
   return mainVisualizer;

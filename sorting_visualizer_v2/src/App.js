@@ -1,12 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./components/MainComponents/Header";
 import { newRandomArray } from "./components/util/ArrayGenerator";
-import ArrayDisplay from "./components/MainComponents/ArrayDisplay";
 import { useArray } from "./components/hooks/array-hook";
 import Actions from "./components/MainComponents/Actions";
-import Description from "./components/MainComponents/Description";
 import Welcome from "./components/UIElements/Welcome";
-import Modal from "./components/UIElements/Modal";
+import Visualize from "./components/MainComponents/Visualize";
 
 const App = () => {
 	const [
@@ -18,15 +16,19 @@ const App = () => {
 		onNewArray,
 		onSortStart,
 	] = useArray(null, -1, newRandomArray(10, 100, 10));
-	const [showWelcome, setShowWelcome] = useState(true);
 	const [selectedAlgorithm, setSelectdAlgorithm] = useState(null);
 	const [play, setPlay] = useState(false);
 	const [time, setTime] = useState(1);
-	const intervalRef = useRef();
+	const [codeOpen, setCodeOpen] = useState(false);
 
 	const onSelect = (option) => {
 		setSelectdAlgorithm(option);
 	};
+
+	const onNewArrayClick = (array) => {
+		setCodeOpen(false);
+		onNewArray(array);
+	}
 
 	const onSortButtonClick = () => {
 		if (!arrayState.algoVisualisation) {
@@ -35,94 +37,40 @@ const App = () => {
 			arrayState.algoVisualisation &&
 			arrayState.counter >= arrayState.algoVisualisation.length - 1
 		) {
+			setCodeOpen(false);
 			onReset();
 		} else {
 			onEnd();
 		}
 	};
 
-	if (play && arrayState.counter >= arrayState.algoVisualisation.length - 1) {
-		clearInterval(intervalRef.current);
-		setPlay(false);
-	}
-
-	useEffect(() => {
-		if(arrayState.algoVisualisation && arrayState.counter < arrayState.algoVisualisation.length - 1 && play) {
-			intervalRef.current = setInterval(() => {
-				onForward();
-			}, (1000/time));
-		}
-		return () => {
-			clearInterval(intervalRef.current);
-		}
-	});
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-		  setShowWelcome(false);
-		}, 2000);
-		return () => clearTimeout(timeout);
-	}, []);
-
-	useEffect(() => {
-		const handleKeyDown = (event) => {
-			if (event.keyCode === 37) {
-				// left arrow key
-				if (play || arrayState.counter <= 0) {
-					return;
-				}
-				onBackward();
-			} else if (event.keyCode === 39) {
-				// right arrow key
-				if (
-					!arrayState.algoVisualisation ||
-					play ||
-					arrayState.counter >= arrayState.algoVisualisation.length - 1
-				) {
-					return;
-				}
-				onForward();
-			}
-		};
-		window.addEventListener("keydown", handleKeyDown);
-
-		return () => {
-			window.removeEventListener("keydown", handleKeyDown);
-		};
-	}, [
-		onBackward,
-		onForward,
-		arrayState.algoVisualisation,
-		arrayState.counter,
-		play,
-	]);
-
 	return (
-		
 		<div>
-			<Modal class="modal_top" show= {showWelcome}> <Welcome></Welcome> </Modal>
+			
+			<Welcome></Welcome>
 			<Header
 				onSelect={onSelect}
 				selected={selectedAlgorithm}
-				onNewArray={(array) => onNewArray(array)}
+				onNewArray={onNewArrayClick}
 				onSort={onSortButtonClick}
 				onPlay={() => setPlay(!play)}
 				play={play}
 				isAlgo={arrayState.algoVisualisation ? true : false}
 				reset={arrayState.algoVisualisation && arrayState.counter === arrayState.algoVisualisation.length - 1 ? true : false}
 			></Header>
-			{
-				arrayState.counter >= 0 && 
-				<Description
-					text={arrayState.algoVisualisation[arrayState.counter].description}
-				></Description>
-			}
-			{
-				arrayState.algoVisualisation && arrayState.counter === -1 &&
-				<Description
-					text = "Use the Next Step and Prev Step buttons for visualisation, or use the left and right arrow keys on the keyboard."
-				></Description>
-			}
-			<ArrayDisplay elements={arrayState.array}></ArrayDisplay>
+
+			<Visualize 
+				arrayState = {arrayState}
+				onForward = {onForward}
+				onBackward = {onBackward}
+				play = {play}
+				setPlay = {() => setPlay(false)}
+				time = {time}
+				codeOpen={codeOpen}
+				setCodeOpen={() => {setCodeOpen(!codeOpen)}}
+				selectedAlgorithm={selectedAlgorithm}
+			></Visualize>
+			
 			{arrayState.algoVisualisation && (
 				<Actions
 					play={play}
@@ -134,9 +82,6 @@ const App = () => {
 					time = {time}
 				></Actions>
 			)}
-
-			
-
 		</div>
 	);
 };

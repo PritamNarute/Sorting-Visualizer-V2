@@ -20,7 +20,8 @@ export const radixSort = (arr) => {
     tempArr = [...arr];
     mainVisualizer.push({
       visualise: tempArr,
-      description: `We are dividing the values into different buckets based on the digit at the position ${i+1}, starting from the right and moving towards the left.`
+      description: `We are dividing the values into different buckets based on the digit at the position ${i+1}, starting from the right and moving towards the left.`,
+      line: "4"
     });
 
     // Place each element in the appropriate bucket based on the digit
@@ -32,11 +33,13 @@ export const radixSort = (arr) => {
       mainVisualizer.push({
         visualise: tempArr,
         description: `Placing ${arr[j].value} in bucket ${digit}`,
+        line: "7"
       });
     }
 
     mainVisualizer.push({
         visualise: [...arr],
+        line: "9",
         description: `Removing the elements from bucket and placing them in array in sorted order based on the digit at index ${i + 1}`
     })
     let k = 0;
@@ -47,12 +50,14 @@ export const radixSort = (arr) => {
             arr[k-1] = {...arr[k-1], color: "green"};
         }
         tempArr = [...arr];
+
         if(i+1 !== numDigits) {
             tempArr[k-1] = {...tempArr[k-1], color:"green"};
         }
         mainVisualizer.push({
           visualise: tempArr,
           description: `Placing ${arr[k - 1].value} at ${k-1} index`,
+          line: "9"
         });
       }
     }
@@ -61,6 +66,7 @@ export const radixSort = (arr) => {
   mainVisualizer.push({
     visualise: [...arr],
     description: "The array has been sorted now.",
+    line: "11"
   });
 
   return mainVisualizer;

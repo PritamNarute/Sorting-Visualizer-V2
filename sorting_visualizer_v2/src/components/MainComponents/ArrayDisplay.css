@@ -4,11 +4,20 @@
     z-index: 0;
     position: fixed;
     bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: flex-end;
     justify-content: center; 
+    transition: all 0.3s;
+}
+
+.elements_showCode {
+    left: 10px;
+}
+
+.elements_not_showCode {
+    justify-content: center;
+    transform: translateX(-50%);
+    left: 50%;
 }
 
 .element {

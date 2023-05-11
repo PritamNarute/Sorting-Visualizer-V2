@@ -10,8 +10,21 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+.visualisations {
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width:500px) {
   html {
     font-size: 50%;
   }
+}
+
+
+.box {
+  height: 300px;
+  width: 300px;
+  background-color: aquamarine;
+  margin-bottom: 20px;
 }

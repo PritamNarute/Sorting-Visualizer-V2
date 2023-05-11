@@ -13,13 +13,15 @@ const partition = (arr, low, high) => {
     mainVisualizer.push({
         visualise: tempArr,
         description: `Here we are starting to partition the array from index ${low} to index ${high}. We choose ${pivot.value} as the pivot value.`,
+        line: "3"
     });
     
     tempArr = [...tempArr];
     tempArr[high] = {...tempArr[high], color: "orange"};
     mainVisualizer.push({
         visualise: tempArr,
-        description: `Pivot with value ${pivot.value} is chosen for partitioning the array.`
+        description: `Pivot with value ${pivot.value} is chosen for partitioning the array.`,
+        line: "7"
     });
 
     let i = low - 1;
@@ -31,8 +33,9 @@ const partition = (arr, low, high) => {
         tempArr[j] = { ...tempArr[j], color: "blue" };
         mainVisualizer.push({
         visualise: tempArr,
-        description: `Comparing element ${tempArr[j].value} with pivot element with value ${pivot.value}.`
-        });
+        description: `Comparing element ${tempArr[j].value} with pivot element with value ${pivot.value}.`,
+        line : "10"
+    });
 
         if (arr[j].value < pivot.value) {
             i++;
@@ -43,11 +46,13 @@ const partition = (arr, low, high) => {
 
             mainVisualizer.push({
                 visualise: tempArr,
-                description: `Since ${tempArr[i].value} is less than pivot ${pivot.value}, we swap ${tempArr[j].value} with ${tempArr[i].value}.`
+                description: `Since ${tempArr[i].value} is less than pivot ${pivot.value}, we swap ${tempArr[j].value} with ${tempArr[i].value}.`,
+                line: "12"
             });
             tempArr = [...tempArr];
             tempArr[i] = {...tempArr[i], color: "purple"};
         }
+
         tempArr = [...tempArr];
         tempArr[j] = { ...tempArr[j], color: "purple" };
     }
@@ -60,7 +65,8 @@ const partition = (arr, low, high) => {
 
     mainVisualizer.push({
         visualise: tempArr,
-        description: `Finally swapping the pivot element ${tempArr[high].value} with the element ${tempArr[i + 1].value}`
+        description: `Finally swapping the pivot element ${tempArr[high].value} with the element ${tempArr[i + 1].value}`,
+        line : "13"
     });
     return i + 1;
 };
@@ -75,7 +81,8 @@ const quickSortHelper = (arr, low, high) => {
     tempArr = [...arr];
     mainVisualizer.push({
         visualise: tempArr,
-        description: `Element ${tempArr[pi].value} is ${low === high ? 'already' : 'now'} at its sorted position.`
+        description: `Element ${tempArr[pi].value} is ${low === high ? 'already' : 'now'} at its sorted position.`,
+        line: "-1"
     })
     quickSortHelper(arr, low, pi - 1);
     quickSortHelper(arr, pi + 1, high);
@@ -87,7 +94,8 @@ export const quickSort = (arr, low, high) => {
     arr[0] = { ...arr[0], color: "green" };
     mainVisualizer.push({
       visualise: arr,
-      description: "The array has been successfully sorted."
+      description: "The array has been successfully sorted.",
+      line: "-1"
     });
     return mainVisualizer;
     }
@@ -96,7 +104,8 @@ export const quickSort = (arr, low, high) => {
     quickSortHelper(arr, low, high);
     mainVisualizer.push({
         visualise: arr,
-        description: "The array has been successfully sorted."
+        description: "The array has been successfully sorted.",
+        line: "-1"
     });
     return mainVisualizer;
 };

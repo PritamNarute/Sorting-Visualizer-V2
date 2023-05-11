@@ -2,6 +2,7 @@ let mainVisualizer = [];
 let tempArr = [];
 
 export const countingSort = (arr) => {
+
     const n = arr.length;
     mainVisualizer = [];
     tempArr = [...arr];
@@ -15,7 +16,8 @@ export const countingSort = (arr) => {
     const countArr = new Array(maxVal + 1).fill(0);
     mainVisualizer.push({
         visualise: [...arr],
-        description: "We're now counting how many times each element appears in the array."
+        description: "We're now counting how many times each element appears in the array.",
+        line: "1"
     });
 
     for (let i = 0; i < n; i++) {
@@ -25,7 +27,8 @@ export const countingSort = (arr) => {
 
         mainVisualizer.push({
             visualise: tempArr,
-            description: `We found ${arr[i].value} in the array ${countArr[arr[i].value]} ${countArr[arr[i].value]>1 ? "times" : "time"}.`
+            description: `We found ${arr[i].value} in the array ${countArr[arr[i].value]} ${countArr[arr[i].value]>1 ? "times" : "time"}.`,
+            line: "4"
         });
     }
     let k =0;
@@ -38,13 +41,15 @@ export const countingSort = (arr) => {
 
             mainVisualizer.push({
                 visualise: [...arr],
-                description: `Adding the occurrences of ${i} to the array.`
+                description: `Adding the occurrences of ${i} to the array.`,
+                line: "11"
             });
         }
     }
     mainVisualizer.push({
         visualise: [...arr],
-        description: "The array has been successfully sorted."
+        description: "The array has been successfully sorted.",
+        line: "14"
     })
     return mainVisualizer;
 }

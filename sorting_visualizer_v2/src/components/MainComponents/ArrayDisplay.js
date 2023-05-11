@@ -1,20 +1,21 @@
 import React from "react";
-import { useWindowDimensions } from "../util/windowDimesion";
 import "./ArrayDisplay.css";
 
-const ArrayDisplay = ({ elements }) => {
-    const { width, height } = useWindowDimensions();
+const ArrayDisplay = ({ elements, codeOpen, width, height}) => {
     let maxElement = 0;
     for(var i=0; i<elements.length; i++) {
         if(elements[i].value > maxElement) {
             maxElement = elements[i].value;
         }
     }
-    const subtract = width <= 800 ? 350 : 300;
+    let subtract = width <= 800 ? 350 : 300;
+    if(codeOpen === true){
+        width = (60/100*width);
+    }
     const barHeight = (height - subtract) / maxElement;
     const maxBarWidth = 50;
     const numBars = elements.length;
-    var barWidth = (width-50) / (numBars + (numBars/2));
+    var barWidth = (width-20) / (numBars + (numBars/2));
     var gapWidth = barWidth/2;
     if(barWidth>maxBarWidth) {
         barWidth=maxBarWidth;
@@ -40,7 +41,7 @@ const ArrayDisplay = ({ elements }) => {
 
     return (
         <div
-            className="elements"
+            className={`elements ${codeOpen ? "elements_showCode" : "elements_not_showCode"}`}
             style={{
                 gap: `${gapWidth}px`,
             }}
